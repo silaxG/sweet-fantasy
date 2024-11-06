@@ -13,7 +13,12 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-button></ion-button>
+    <ion-item>
+      <ion-label></ion-label>
+      <ion-input [(ngModel)]="data.nombre"></ion-input>
+    </ion-item>
+
+  <ion-button (click)="crearElemento()"></ion-button>
 
   <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>
