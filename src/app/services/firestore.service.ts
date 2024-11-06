@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Receta } from '../models/item';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +21,7 @@ export class FirestoreService {
   //obtener colecciones
   getColection<tipo>(path: string){
 
-    const collection= this.firestore.collection<tipo>(path);
+    const collection= this.firestore.collection<Receta>(path);
     return collection.valueChanges()
 
   }

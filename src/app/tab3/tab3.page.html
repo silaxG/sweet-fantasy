@@ -13,12 +13,29 @@
     </ion-toolbar>
   </ion-header>
 
-    <ion-item>
-      <ion-label></ion-label>
-      <ion-input [(ngModel)]="data.nombre"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label>Nombre</ion-label>
+    <ion-input [(ngModel)]="data.nombre"></ion-input>
+  </ion-item>
 
-  <ion-button (click)="crearElemento()"></ion-button>
+  <ion-item>
+    <ion-label>descripcion</ion-label>
+    <ion-input [(ngModel)]="data.descripcion"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Instrucciones de preparado</ion-label>
+    <ion-input [(ngModel)]="data.instrucciones"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tiempo de preparacion</ion-label>
+    <ion-input [(ngModel)]="data.preparacion"></ion-input>
+  </ion-item>
+
+<label for="imagen">Imagen</label>
+<input type="image" src="" alt="">
+  <ion-button (click)="crearElemento()">añadir Receta</ion-button>
 
   <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>

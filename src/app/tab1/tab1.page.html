@@ -7,14 +7,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" color="primary">
-  <ion-header collapse="condense">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar color="secondary">
-      <ion-title size="large" color="success" style="font-family: Island Moments, serif; color: #ffff;">Tab 1</ion-title>
+      <ion-title size="large" >Tab 1</ion-title>
     </ion-toolbar>
-  </ion-header>
-  <ion-item *ngFor="let item of receta">
+  </ion-header> -->
 
-    <ion-card>
+    <ion-card *ngFor="let item of receta" color="secondary">
       <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
       <ion-card-header>
         <ion-card-title>{{item.nombre}}</ion-card-title>
@@ -25,6 +24,5 @@
         Here's a small text description for the card content. Nothing more, nothing less.
       </ion-card-content>
     </ion-card> 
-  </ion-item>
     
 </ion-content>
