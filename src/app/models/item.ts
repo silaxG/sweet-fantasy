@@ -7,15 +7,13 @@ export interface Tarjeta {
     }
 }
 export interface Receta{
-
-    infocompleta:{
-        id:string
+    id:string
         nombre:string
         descripcion:string
         porciones:number
         instrucciones:string
         imagen:any
         preparacion:string
-    }
+    
 }
 

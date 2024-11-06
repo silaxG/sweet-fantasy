@@ -6,15 +6,23 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 export class FirestoreService {
 
   constructor(private firestore: AngularFirestore) {}
+  //crear coleccion
   createDoc(data:any, path: string, id:string){
     const collection = this.firestore.collection(path);
 
     return collection.doc(id).set(data)
     
   }
-
-
-  crearDoc(){
-    this.firestore.collection('receta')
+//crear id
+  getid(){ 
+    return this.firestore.createId()
   }
+  //obtener colecciones
+  getColection<tipo>(path: string){
+
+    const collection= this.firestore.collection<tipo>(path);
+    return collection.valueChanges()
+
+  }
+
 }
