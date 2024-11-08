@@ -10,33 +10,44 @@ import { FirestoreService } from '../services/firestore.service';
 export class Tab3Page {
   
   constructor(private database: FirestoreService) { }
-//interfaz de receta
+
+  // Interfaz de receta
   data: Receta = {
-    id:'',
-      nombre:'',
-      descripcion:'',
-      porciones:0,
-      instrucciones:'',
-      imagen:'',
-      preparacion:'',
-    
+    id: '',
+    nombre: '',
+    descripcion: '',
+    porciones: 0,
+    instrucciones: '',
+    imagen: '',
+    preparacion: '',
   }
-  //funcion para crear elemento
-  crearElemento(){
+
+  // Función para crear elemento
+  crearElemento() {
+    const receta: Receta = { ...this.data };
+    const path = 'receta';
+    const id = this.database.getid();
     
-    const receta: Receta = {
-      id:'',
-        nombre:'',
-        descripcion:'',
-        porciones:0,
-        instrucciones:'',
-        imagen:'',
-        preparacion:'',
+    this.database.createDoc(receta, path, id).then((res) => {
+      console.log("Se ha guardado con éxito");
+    });
+  }
+
+  // Evento que convierte la imagen en código legible
+  procesarImagen(event: any) {
+    const archivo = event.target.files[0]; // Obtenemos el archivo seleccionado
+    if (archivo) {
+      const lector = new FileReader();
+
+      // Este evento se activa cuando la lectura de la imagen ha terminado
+      lector.onload = (e: any) => {
+        const base64Imagen = e.target.result; // Convertimos la imagen a base64
+
+        // Asignamos la imagen a la propiedad 'imagen' en 'data'
+        this.data.imagen = base64Imagen;
+      };
+
+      lector.readAsDataURL(archivo); // Leemos la imagen como base64
     }
-    const path= 'receta'
-    const id= this.database.getid()
-    this.database.createDoc(this.data, path, id).then((res)=>{
-      console.log("se ha guardado con exito")
-    } )
   }
 }
