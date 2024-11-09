@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Receta } from '../models/item';
 import { FirestoreService } from '../services/firestore.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-tab3',
@@ -9,6 +10,8 @@ import { FirestoreService } from '../services/firestore.service';
 })
 export class Tab3Page {
   
+  imagenCargada: boolean = false; // Nueva variable para rastrear el estado de la imagen cargada
+
   constructor(private database: FirestoreService) { }
 
   // Interfaz de receta
@@ -31,7 +34,14 @@ export class Tab3Page {
     
     this.database.createDoc(receta, path, id).then((res) => {
       console.log("Se ha guardado con éxito");
-    });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    })
   }
 
   // Evento que convierte la imagen en código legible
@@ -46,6 +56,7 @@ export class Tab3Page {
 
         // Asignamos la imagen a la propiedad 'imagen' en 'data'
         this.data.imagen = base64Imagen;
+        this.imagenCargada = true; // Cambiamos el estado a verdadero al cargar la imagen
       };
 
       lector.readAsDataURL(archivo); // Leemos la imagen como base64
