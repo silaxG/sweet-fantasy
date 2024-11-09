@@ -20,6 +20,7 @@ export class Tab3Page {
     instrucciones: '',
     imagen: '',
     preparacion: '',
+    categoria:'',
   }
 
   // Función para crear elemento

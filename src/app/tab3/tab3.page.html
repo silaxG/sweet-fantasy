@@ -14,12 +14,12 @@
   </ion-header>
 <!-- formulario de la pagina para añadir recetas -->
 
-   
-<ion-item>
-  <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="data.nombre"></ion-input>
-</ion-item>
 
-<ion-item>
+     <ion-item color="secondary">
+       <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="data.nombre"></ion-input>
+      </ion-item>
+
+      <ion-item>
   <ion-input label="Descripcion" labelPlacement="floating" [(ngModel)]="data.descripcion"></ion-input>
 </ion-item>
 <ion-item>
@@ -33,23 +33,24 @@
 </ion-item>
 
 
- 
-  <!-- row para centrar -->
+
+<!-- row para centrar -->
 <ion-row>
   <!-- col de relleno -->
 <ion-col></ion-col>
 <ion-col>
-<!-- col que contendra los botones -->
+  <!-- col que contendra los botones -->
   <label class="custom-file-upload">
     <input  type="file" (change)="procesarImagen($event)" id="file-input">
     <span>Haz clic o arrastra una imagen aquí</span>
   </label>
 </ion-col>
-  <ion-col></ion-col>
+<ion-col></ion-col>
 </ion-row>
 <!-- boton para añadir receta -->
 <ion-button expand="block" (click)="crearElemento()">Añadir receta</ion-button>
 <!-- col de relleno -->
+
 
   <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>

@@ -5,6 +5,7 @@ export interface Receta{
         porciones:number
         instrucciones:string
         imagen:any
+        categoria:string
         preparacion:string
     
 }
