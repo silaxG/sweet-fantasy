@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Receta } from '../models/item';
 import { FirestoreService } from '../services/firestore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -9,7 +10,9 @@ import { FirestoreService } from '../services/firestore.service';
 })
 export class Tab1Page {
 
-  constructor(private database: FirestoreService) {
+  constructor(private database: FirestoreService,
+    servicioRutas:Router
+  ) {
   }
   receta: Receta[] = []
 
