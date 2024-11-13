@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  
+
   imagenCargada: boolean = false; // Nueva variable para rastrear el estado de la imagen cargada
 
   constructor(private database: FirestoreService) { }
@@ -23,7 +23,7 @@ export class Tab3Page {
     instrucciones: '',
     imagen: '',
     preparacion: '',
-    categoria:'',
+    categoria: '',
   }
 
   // Función para crear elemento
@@ -31,13 +31,13 @@ export class Tab3Page {
     const receta: Receta = { ...this.data };
     const path = 'receta';
     const id = this.database.getid();
-    
+
     this.database.createDoc(receta, path, id).then((res) => {
       console.log("Se ha guardado con éxito");
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Your work has been saved",
+        title: "Se ha guardado la receta con exito",
         showConfirmButton: false,
         timer: 1500
       });

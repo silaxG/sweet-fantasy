@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="secondary">
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 3
+      Crear Receta
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,55 +9,57 @@
 <ion-content [fullscreen]="true" color="primary">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Crear Receta</ion-title>
     </ion-toolbar>
   </ion-header>
-<!-- formulario de la pagina para añadir recetas -->
+  <!-- formulario de la pagina para añadir recetas -->
 
 
-     <ion-item color="secondary">
-       <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="data.nombre"></ion-input>
-      </ion-item>
+  <ion-item color="secondary">
+    <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="data.nombre"></ion-input>
+  </ion-item>
 
-     <ion-item color="secondary">
-  <ion-input label="Descripcion" labelPlacement="floating" [(ngModel)]="data.descripcion"></ion-input>
-</ion-item>
-<ion-item color="secondary">
-  <ion-input label="Cantidad de porciones" labelPlacement="floating" [(ngModel)]="data.porciones" type="number"></ion-input>
-</ion-item>
-<ion-item color="secondary">
-  <ion-input label="Instrucciones de preparacion" labelPlacement="floating" [(ngModel)]="data.instrucciones"></ion-input>
-</ion-item>
-<ion-item color="secondary">
-  <ion-input label="Tiempo de preparacion" labelPlacement="floating" [(ngModel)]="data.preparacion"></ion-input>
-</ion-item>
-<!-- categoria de recetas -->
-<ion-item color="secondary">
-  <ion-select label="Floating label" label-placement="floating" [(ngModel)]="data.categoria">
-    <ion-select-option value="torta">torta</ion-select-option>
-    <ion-select-option value="tartas">tartas</ion-select-option>
-    <ion-select-option value="dulcespostres">dulces y postres</ion-select-option>
-  </ion-select>
-</ion-item>
+  <ion-item color="secondary">
+    <ion-input label="Descripcion" labelPlacement="floating" [(ngModel)]="data.descripcion"></ion-input>
+  </ion-item>
+  <ion-item color="secondary">
+    <ion-input label="Cantidad de porciones" labelPlacement="floating" [(ngModel)]="data.porciones"
+      type="number"></ion-input>
+  </ion-item>
+  <ion-item color="secondary">
+    <ion-input label="Instrucciones de preparacion" labelPlacement="floating"
+      [(ngModel)]="data.instrucciones"></ion-input>
+  </ion-item>
+  <ion-item color="secondary">
+    <ion-input label="Tiempo de preparacion" labelPlacement="floating" [(ngModel)]="data.preparacion"></ion-input>
+  </ion-item>
+  <!-- categoria de recetas -->
+  <ion-item color="secondary">
+    <ion-select label="Categoria de producto" label-placement="floating" [(ngModel)]="data.categoria">
+      <ion-select-option value="torta">Tortas</ion-select-option>
+      <ion-select-option value="tartas">Tartas</ion-select-option>
+      <ion-select-option value="dulcespostres">Dulces y/o Postres</ion-select-option>
+    </ion-select>
+  </ion-item>
 
-<!-- row para centrar -->
-<ion-row>
+  <!-- row para centrar -->
+  <ion-row>
+    <!-- col de relleno -->
+    <ion-col></ion-col>
+    <!-- col que contendra los botones -->
+    <ion-col>
+      <label class="custom-file-upload">
+        <input type="file" (change)="procesarImagen($event)" id="file-input">
+        <span *ngIf="!imagenCargada">Selecciona una imagen</span>
+        <span *ngIf="imagenCargada">Imagen cargada</span>
+      </label>
+    </ion-col>
+
+    <ion-col></ion-col>
+  </ion-row>
+  <!-- boton para añadir receta -->
+  <ion-button expand="block" color="tertiary" (click)="crearElemento()">Añadir receta</ion-button>
   <!-- col de relleno -->
-<ion-col></ion-col>
-<!-- col que contendra los botones -->
-  <ion-col>
-    <label class="custom-file-upload">
-      <input  type="file" (change)="procesarImagen($event)" id="file-input">
-      <span *ngIf="!imagenCargada">Selecciona una imagen</span>
-      <span *ngIf="imagenCargada">Imagen cargada</span>
-    </label>
-  </ion-col>
-
-<ion-col></ion-col>
-</ion-row>
-<!-- boton para añadir receta -->
-<ion-button expand="block" color="tertiary" (click)="crearElemento()">Añadir receta</ion-button>
-<!-- col de relleno -->
 
 
   <app-explore-container name="Tab 3 page"></app-explore-container>

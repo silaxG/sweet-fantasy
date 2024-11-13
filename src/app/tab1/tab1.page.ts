@@ -11,17 +11,18 @@ export class Tab1Page {
 
   constructor(private database: FirestoreService) {
   }
-  receta: Receta[]= []
+  receta: Receta[] = []
 
-  ngOnInit(){
+  ngOnInit() {
     this.obtenerresultado()
-    
+
   }
 
-  obtenerresultado(){
-    this.database.getColection<Receta>('receta').subscribe(res =>{console.log("informacion devuelta ",res)
+  obtenerresultado() {
+    this.database.getColection<Receta>('receta').subscribe(res => {
+      console.log("informacion devuelta ", res)
 
-      this.receta= res;
+      this.receta = res;
     })
   }
 
