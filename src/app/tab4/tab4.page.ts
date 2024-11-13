@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Route } from '@angular/router';
+import { FirestoreService } from '../services/firestore.service';
 
 @Component({
   selector: 'app-tab4',
@@ -6,8 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tab4.page.scss'],
 })
 export class Tab4Page implements OnInit {
+  hide = true;
 
-  constructor() { }
+  // IMPORTACIÓN DEL MODELO / INTERFAZ
+  usuarios: Usuario = {
+    uid: '',
+    nombre: '',
+    apellido: '',
+    email: '',
+    rol: 'usuario', // => designamos un rol por defecto para los usuarios que se registren 
+    password: ''
+  }
+
+  // CREAR UNA COLECCIÓN QUE SOLO RECIBE OBJETOS DEL TIPO USUARIOS
+  coleccionUsuarios: Usuario[] = [];
+
+  // Referenciamos a nuestros servicios
+  constructor(
+    public servicioFirestore: FirestoreService, // vincula UID con la colección
+    public servicioRutas: Route // método de navegación
+  ){}
+
+ 
 
   ngOnInit() {
   }
