@@ -1,13 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>recetafull</ion-title>
+    <ion-title>{{receta?.nombre}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">recetafull</ion-title>
+      <ion-content>
+        {{receta?.categoria}}
+      </ion-content>
+      <ion-title size="large">{{receta?.nombre}}</ion-title>
     </ion-toolbar>
   </ion-header>
 </ion-content>

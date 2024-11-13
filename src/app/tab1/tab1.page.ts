@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class Tab1Page {
 
   constructor(private database: FirestoreService,
-    servicioRutas:Router
+    private servicioRutas:Router
   ) {
   }
   receta: Receta[] = []
@@ -28,5 +28,9 @@ export class Tab1Page {
       this.receta = res;
     })
   }
-
+  verDetalle(id: string) {
+    this.servicioRutas.navigate(['/recetafull', id]);
+  }
 }
+
+
