@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Route } from '@angular/router';
+import { Router } from '@angular/router';
 import { FirestoreService } from '../services/firestore.service';
+import { Usuario } from '../models/usuario';
 
 @Component({
   selector: 'app-tab4',
@@ -26,7 +27,7 @@ export class Tab4Page implements OnInit {
   // Referenciamos a nuestros servicios
   constructor(
     public servicioFirestore: FirestoreService, // vincula UID con la colección
-    public servicioRutas: Route // método de navegación
+    public servicioRutas: Router // método de navegación
   ){}
 
  
