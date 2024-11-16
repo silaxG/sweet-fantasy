@@ -24,6 +24,7 @@ export class Tab3Page {
     imagen: '',
     preparacion: '',
     categoria:'',
+    ingredientes:'',
   }
 
   // Función para crear elemento

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
 import { Receta } from '../models/item';
 import { FirestoreService } from '../services/firestore.service';
 import { Router } from '@angular/router';
@@ -9,9 +11,27 @@ import { Router } from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  @ViewChild(IonModal) modal!: IonModal;
 
+  message = 'si quito esta linea y la de abajo el codigo deja de andar ayuda.';
+  name: string = '';
+  
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.name, 'confirm');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.message = `Hello, ${ev.detail.data}!`;
+    }
+  }
   constructor(private database: FirestoreService,
-    private servicioRutas:Router
+    private servicioRutas: Router
   ) {
   }
   receta: Receta[] = []
@@ -29,7 +49,7 @@ export class Tab1Page {
     })
   }
   verDetalle(id: string) {
-    this.servicioRutas.navigate(['/recetafull', id]);
+
   }
 }
 

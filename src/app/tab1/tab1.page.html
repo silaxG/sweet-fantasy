@@ -8,7 +8,6 @@
         </ion-col>
         <ion-col>
           <ion-title class="island-moments">
-
             Sweet Fantasy
           </ion-title>
         </ion-col>
@@ -20,11 +19,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" color="primary">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar color="secondary">
-      <ion-title size="large" >Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
 
   <ion-card *ngFor="let item of receta" color="secondary">
     <img alt="Silhouette of mountains" src="{{item.imagen}}" />
@@ -36,7 +30,27 @@
     <ion-card-content>
       {{item.descripcion}}
     </ion-card-content>
-    <ion-button (click)="verDetalle(item.id)">Ver Detalle</ion-button>
-  </ion-card>
+    <ion-button id="open-modal">Ver Detalle</ion-button>
 
+    <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+      <ng-template color="secondary">
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Cerrar</ion-button>
+            </ion-buttons>
+            <ion-title>{{item.nombre}}</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <img alt="Silhouette of mountains" class="modal-image" src="{{item.imagen}}" />
+          <p>Categoria de receta:{{item.categoria}}</p><br>
+          <p>Descripcion de la receta:{{item.descripcion}}</p><br>
+          <p>Ingredientes: {{item.ingredientes}}</p><br>
+          <p>Cantidad de porciones recomendada: {{item.porciones}}</p><br>
+          <p>Preparación de la receta: {{item.preparacion}}</p>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-card>
 </ion-content>
