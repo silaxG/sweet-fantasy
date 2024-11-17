@@ -1,6 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
 import { Receta } from '../models/item';
 import { FirestoreService } from '../services/firestore.service';
 import { Router } from '@angular/router';
@@ -11,46 +9,33 @@ import { Router } from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  @ViewChild(IonModal) modal!: IonModal;
+  receta: Receta[] = [];
+  isModalOpen = false;
+  selectedReceta: Receta | null = null;
 
-  message = 'si quito esta linea y la de abajo el codigo deja de andar ayuda.';
-  name: string = '';
-  
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
-  }
-
-  confirm() {
-    this.modal.dismiss(this.name, 'confirm');
-  }
-
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-      this.message = `Hello, ${ev.detail.data}!`;
-    }
-  }
-  constructor(private database: FirestoreService,
+  constructor(
+    private database: FirestoreService,
     private servicioRutas: Router
-  ) {
-  }
-  receta: Receta[] = []
+  ) {}
 
   ngOnInit() {
-    this.obtenerresultado()
-
+    this.obtenerresultado();
   }
 
   obtenerresultado() {
     this.database.getColection<Receta>('receta').subscribe(res => {
-      console.log("informacion devuelta ", res)
-
+      console.log("informacion devuelta ", res);
       this.receta = res;
-    })
+    });
   }
-  verDetalle(id: string) {
 
+  openModal(item: Receta) {
+    this.selectedReceta = item; // Guardar la receta seleccionada
+    this.isModalOpen = true; // Abrir el modal
+  }
+
+  closeModal() {
+    this.isModalOpen = false; // Cerrar el modal
+    this.selectedReceta = null; // Limpiar la receta seleccionada
   }
 }
-
-
