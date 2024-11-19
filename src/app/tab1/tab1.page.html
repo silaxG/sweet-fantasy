@@ -1,33 +1,6 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="secondary">
-    <ion-grid>
-      <ion-row>
-
-        <ion-col>
-          <img src="/assets/logo.png" alt="" style="width: 50px; height: 50px;">
-        </ion-col>
-        <ion-col>
-          <ion-title class="island-moments">
-
-            Sweet Fantasy
-          </ion-title>
-        </ion-col>
-        <ion-col></ion-col>
-      </ion-row>
-    </ion-grid>
-
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true" color="primary">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar color="secondary">
-      <ion-title size="large" >Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-
   <ion-card *ngFor="let item of receta" color="secondary">
-    <img alt="Silhouette of mountains" src="{{item.imagen}}" />
+    <img alt="Imagen de receta" src="{{item.imagen}}" />
     <ion-card-header>
       <ion-card-title>{{item.nombre}}</ion-card-title>
       <ion-card-subtitle>{{item.categoria}}</ion-card-subtitle>
@@ -36,6 +9,28 @@
     <ion-card-content>
       {{item.descripcion}}
     </ion-card-content>
+    <ion-button (click)="openModal(item)">Ver Detalle</ion-button>
   </ion-card>
 
+  <!-- Modal -->
+  <ion-modal [isOpen]="isModalOpen" (willDismiss)="closeModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="closeModal()">Cerrar</ion-button>
+          </ion-buttons>
+          <ion-title>{{selectedReceta?.nombre}}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <img alt="Imagen de la receta" class="modal-image" [src]="selectedReceta?.imagen" />
+        <p>Categoria de receta: {{selectedReceta?.categoria}}</p><br>
+        <p>Descripcion de la receta: {{selectedReceta?.descripcion}}</p><br>
+        <p>Ingredientes: {{selectedReceta?.ingredientes}}</p><br>
+        <p>Cantidad de porciones recomendada: {{selectedReceta?.porciones}}</p><br>
+        <p>Preparación de la receta: {{selectedReceta?.preparacion}}</p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

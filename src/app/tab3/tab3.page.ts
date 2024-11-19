@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-
+  
   imagenCargada: boolean = false; // Nueva variable para rastrear el estado de la imagen cargada
 
   constructor(private database: FirestoreService) { }
@@ -23,7 +23,8 @@ export class Tab3Page {
     instrucciones: '',
     imagen: '',
     preparacion: '',
-    categoria: '',
+    categoria:'',
+    ingredientes:'',
   }
 
   // Función para crear elemento
@@ -31,18 +32,17 @@ export class Tab3Page {
     const receta: Receta = { ...this.data };
     const path = 'receta';
     const id = this.database.getid();
-
-    this.database.createDoc(receta, path, id).then((res) => {
+    
+    this.database.createDoc(receta, path, id)
+    .then((res) => {
       console.log("Se ha guardado con éxito");
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Se ha guardado la receta con exito",
-        showConfirmButton: false,
-        timer: 1500
-      });
+      alert("se ha añadido la receta con exito")
     })
-  }
+    .catch((error) => {
+      console.error("Error al guardar:", error);
+      alert("algo ha salido mal \n"+ error)
+    });
+  }  
 
   // Evento que convierte la imagen en código legible
   procesarImagen(event: any) {
