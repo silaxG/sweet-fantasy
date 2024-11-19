@@ -1,17 +1,58 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-title>
-      Tab 2
+      Buscador
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+
+<ion-content [fullscreen]="true" color="primary">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Buscador</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <!-- Buscador -->
+  <ion-searchbar placeholder="Busque recetas..." (ionInput)="onSearch($event)" (ionFocus)="verbusquedasRecientes = true" 
+    (ionBlur)="onBlurSearchBar($event)"  color="light">
+
+  </ion-searchbar>
+
+  <!-- Lista de elementos buscados recientemente -->
+  <ion-list *ngIf=" verbusquedasRecientes && busquedasRecientes.length > 0">
+    <ion-item *ngFor="let search of busquedasRecientes" (click)="onRecentSearchClick(search)">
+      {{ search }}
+    </ion-item>
+  </ion-list>
+
+
+  <!-- Lista de elementos -->
+  <ion-list>
+    <ion-item *ngFor="let item of  itemsFiltrados">
+      {{ item }}
+    </ion-item>
+  </ion-list>
+
+  <!-- Título de Tendencias -->
+  <div class="trend-title">Tendencias</div>
+
+
+  <!--tendencias-->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let trend of trends">
+        <ion-card (click)="onTrendClick(trend)" color="secondary">
+          <img [src]="trend.image" alt="{{ trend.title }}" />
+          <ion-card-content>
+            <h3>{{ trend.title }}</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
   <app-explore-container name="Tab 2 page"></app-explore-container>
 </ion-content>
